@@ -5,8 +5,8 @@ grails:
         defaultPackage: io.checkpost
 info:
     app:
-        name: '@info.app.name@'
-        version: '@info.app.version@'
+        name: CheckPost
+        version: 1.0.0
         grailsVersion: '@info.app.grailsVersion@'
 spring:
     groovy:
