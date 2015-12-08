@@ -80,17 +80,19 @@ endpoints:
 dataSource:
     pooled: true
     jmxExport: true
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
+    driverClassName: com.mysql.jdbc.Driver
+    dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
 environments:
     development:
         server:
-            port: 8980
+            port: 8007
         dataSource:
-            dbCreate: create-drop
-            url: jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            dbCreate: update
+            url: jdbc:mysql://localhost:3306/checkpost
+            username: root
+            password:
+            logSql: true
     test:
         dataSource:
             dbCreate: update
