@@ -1,4 +1,4 @@
-package io.checkpost.bace.dbean;
+package io.checkpost.dbean;
 
 public class PermissionPoint {
 }

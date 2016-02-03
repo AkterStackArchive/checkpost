@@ -1,4 +1,4 @@
-package io.checkpost.bace.gateway.http;
+package io.checkpost.gateway.http;
 
 import io.bace.http.HttpRouteHandler;
 
