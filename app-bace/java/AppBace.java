@@ -1,10 +1,11 @@
 import io.bace.core.BaceApp;
-import io.vertx.core.Launcher;
 
-public class AppBace extends Launcher {
+public class AppBace extends BaceApp {
 
-    public static void main(String[] args) {
-        BaceApp.run(AppBace.class, args);
+    public AppBace() {}
+
+    public AppBace(Class appClazz) {
+        super(AppBace.class);
     }
 
 }

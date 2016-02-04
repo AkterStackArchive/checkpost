@@ -9,11 +9,11 @@ public class HttpServer {
 
     private HttpServer(Vertx vertx, HttpRouter httpRouter, int port) {
         vertxHttpServer = vertx.createHttpServer();
-        vertxHttpServer.requestHandler(request -> {
+        /*vertxHttpServer.requestHandler(request -> {
             HttpServerResponse response = request.response();
             response.putHeader("content-type", "text/plain");
             response.end("Hello World!");
-        });
+        });*/
         vertxHttpServer.requestHandler(httpRouter.vertexRouter()::accept).listen(port);
     }
 
