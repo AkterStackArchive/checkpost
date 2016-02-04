@@ -10,14 +10,21 @@ public abstract class BaceApp extends AbstractVerticle {
     private HttpServer httpServer;
     private HttpRouter httpRouter;
 
-    public BaceApp() {
-
-    }
+    public BaceApp(){}
 
     public BaceApp(Class appClazz) {
         this.appClazz = appClazz;
-        this.httpRouter = HttpRouter.instance(vertx);
-        this.httpServer = HttpServer.start(vertx, httpRouter, 8080);
+    }
+
+    @Override
+    public void start() {
+        httpRouter = HttpRouter.instance(vertx);
+        httpServer = HttpServer.start(vertx, httpRouter, 8080);
+    }
+
+    @Override
+    public void stop() {
+
     }
 
 }
