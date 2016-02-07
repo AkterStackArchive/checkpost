@@ -6,6 +6,8 @@ import io.vertx.core.AbstractVerticle;
 
 public abstract class BaceApp extends AbstractVerticle {
 
+    private static final Integer DEFAULT_HTTP_PORT = 7007;
+
     private Class appClazz;
     private HttpServer httpServer;
     private HttpRouter httpRouter;
@@ -19,7 +21,7 @@ public abstract class BaceApp extends AbstractVerticle {
     @Override
     public void start() {
         httpRouter = HttpRouter.instance(vertx);
-        httpServer = HttpServer.start(vertx, httpRouter, 8080);
+        httpServer = HttpServer.start(vertx, httpRouter, DEFAULT_HTTP_PORT);
     }
 
     @Override
