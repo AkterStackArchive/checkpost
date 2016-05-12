@@ -9,15 +9,17 @@ repositories {
 }
 
 sourceSets {
-    main {
+    baceApp {
         java {
-            srcDir 'app-bace/java'
+            srcDir 'bace-app/http'
         }
         groovy {
-            srcDir 'app-bace/groovy'
+            srcDir 'bace-app/properties'
         }
     }
 }
+
+compileJava.dependsOn("compileBaceAppJava")
 
 dependencies {
     compile 'org.codehaus.groovy:groovy:2.4.5'
