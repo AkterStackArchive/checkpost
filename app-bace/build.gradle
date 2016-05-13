@@ -1,6 +1,6 @@
-apply plugin: 'idea'
 apply plugin: 'java'
 apply plugin: 'groovy'
+apply plugin: 'idea'
 
 repositories {
     mavenLocal()
@@ -8,20 +8,25 @@ repositories {
     jcenter()
 }
 
+Set<String> baceAppSrcDirs = ['bace-app/core', 'bace-app/http', 'bace-app/properties']
+
 sourceSets {
     baceApp {
-        java {
-            srcDir 'bace-app/http'
-        }
         groovy {
-            srcDir 'bace-app/properties'
+            srcDirs += baceAppSrcDirs
+        }
+        java {
+            srcDirs = [] //do not compile java classes twice
+        }
+        resources {
+            srcDir "bace-app/conf"
         }
     }
 }
 
-compileJava.dependsOn("compileBaceAppJava")
+compileGroovy.dependsOn("compileBaceAppGroovy")
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy:2.4.5'
-    compile 'io.vertx:vertx-web:3.2.0'
+    baceAppCompile 'org.codehaus.groovy:groovy:2.4.5'
+    baceAppCompile 'io.vertx:vertx-web:3.2.0'
 }

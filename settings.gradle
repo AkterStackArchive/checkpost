@@ -1,2 +1,3 @@
 rootProject.name = 'checkpost'
 include 'app-bace'
+include 'bace'
