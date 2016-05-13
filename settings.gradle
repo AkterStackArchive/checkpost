@@ -1,3 +1,4 @@
 rootProject.name = 'checkpost'
 include 'app-bace'
 include 'bace'
+include 'dbean'

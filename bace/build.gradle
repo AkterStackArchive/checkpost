@@ -1,0 +1,17 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'idea'
+
+group 'io.bace'
+version '0.1.0'
+
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy:2.4.5'
+    compile 'io.vertx:vertx-web:3.2.1'
+}

@@ -8,15 +8,15 @@ repositories {
     jcenter()
 }
 
-Set<String> baceAppSrcDirs = ['bace-app/core', 'bace-app/http', 'bace-app/properties']
+Set<String> baceAppSrcDirs = ['bace-app/core', 'bace-app/http', 'bace-app/dbeans', 'bace-app/properties']
 
 sourceSets {
     baceApp {
-        groovy {
-            srcDirs += baceAppSrcDirs
-        }
         java {
             srcDirs = [] //do not compile java classes twice
+        }
+        groovy {
+            srcDirs += baceAppSrcDirs
         }
         resources {
             srcDir "bace-app/conf"
@@ -27,6 +27,8 @@ sourceSets {
 compileGroovy.dependsOn("compileBaceAppGroovy")
 
 dependencies {
+    baceAppCompile project(':bace')
+    baceAppCompile project(':dbean')
     baceAppCompile 'org.codehaus.groovy:groovy:2.4.5'
-    baceAppCompile 'io.vertx:vertx-web:3.2.0'
+    baceAppCompile 'io.vertx:vertx-web:3.2.1'
 }
