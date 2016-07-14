@@ -9,17 +9,27 @@ repositories {
 }
 
 sourceSets {
-    main {
+    appBace {
         java {
             srcDir 'app-bace/java'
+            output.classesDir = "$buildDir/classes/main"
         }
         groovy {
             srcDir 'app-bace/groovy'
+            output.classesDir = "$buildDir/classes/main"
         }
     }
+    bace {
+        java {
+            srcDir 'bace/java'
+            output.classesDir = "$buildDir/classes/main"
+        }
+    }
+    compileJava.dependsOn("compileBaceJava")
+    compileJava.dependsOn("compileAppBaceJava")
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy:2.4.5'
-    compile 'io.vertx:vertx-web:3.2.0'
+    appBaceCompile 'org.codehaus.groovy:groovy:2.4.5'
+    baceCompile 'io.vertx:vertx-web:3.3.2'
 }

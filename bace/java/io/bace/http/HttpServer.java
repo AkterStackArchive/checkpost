@@ -1,7 +1,6 @@
 package io.bace.http;
 
 import io.vertx.core.Vertx;
-import io.vertx.core.http.HttpServerResponse;
 
 public class HttpServer {
 
