@@ -14,4 +14,12 @@ public abstract class HttpRouteHandler {
     private Map<String, Object> params;
     private RoutingContext routingContext;
 
+    public void get(String path, HttpReqResHandler handler) {
+
+    }
+
+    public static void register(Class<HttpRouteHandler> httpRouteHandlerClass) {
+        //TODO do registration
+    }
+
 }

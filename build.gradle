@@ -19,7 +19,7 @@ sourceSets {
             srcDir 'app-bace/app'
             srcDir 'app-bace/bizrule'
             srcDir 'app-bace/http'
-            srcDir 'app-bace/dbean'
+            srcDir 'app-bace/dbeans'
             srcDir 'app-bace/properties'
         }
         resources {
