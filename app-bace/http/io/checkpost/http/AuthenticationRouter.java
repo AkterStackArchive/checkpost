@@ -1,6 +1,5 @@
 package io.checkpost.http;
 
-import io.bace.http.HttpRouteHandler;
 import io.bace.http.HttpRouter;
 
 import java.util.HashMap;
@@ -15,8 +14,6 @@ public class AuthenticationRouter extends HttpRouter {
 
         });
     }
-
-    public AuthenticationRouter(){}
 
     static {
         register(AuthenticationRouter.class);

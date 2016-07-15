@@ -1,6 +1,5 @@
 package io.bace.core;
 
-import io.bace.http.HttpRouter;
 import io.bace.http.HttpServer;
 import io.vertx.core.AbstractVerticle;
 

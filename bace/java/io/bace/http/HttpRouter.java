@@ -24,8 +24,13 @@ public class HttpRouter {
 
     }
 
-    public static void register(Class<HttpRouter> httpRouteHandlerClass) throws Exception {
-        Constructor<HttpRouter> constructor = httpRouteHandlerClass.getConstructor();
-        Bace.routeFactory().register(vertxRouter, constructor.newInstance());
+    public static void register(Class<? extends HttpRouter> httpRouterClass) {
+        try {
+            Constructor<?> constructor = httpRouterClass.getConstructor();
+            HttpRouter httpRouter = (HttpRouter)constructor.newInstance();
+            Bace.routeFactory().register(HttpServer.vertxRouter(), httpRouter);
+        } catch(Exception ex) {
+            //TODO Handle exception
+        }
     }
 }
