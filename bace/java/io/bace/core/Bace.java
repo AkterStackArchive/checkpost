@@ -1,7 +1,6 @@
 package io.bace.core;
 
 import io.bace.core.factory.HttpRouteFactory;
-import io.vertx.ext.web.Router;
 
 public class Bace {
 
