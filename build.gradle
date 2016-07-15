@@ -23,7 +23,7 @@ sourceSets {
             srcDir 'app-bace/properties'
         }
         resources {
-            srcDir 'app-bace/configs'
+            srcDir 'app-bace/conf'
         }
         output.classesDir = "$buildDir/classes/main"
     }
@@ -35,6 +35,9 @@ sourceSets {
     }
     compileGroovy.dependsOn("compileAppBaceGroovy")
     compileAppBaceGroovy.dependsOn("compileBaceJava")
+
+    processResources.dependsOn("processAppBaceResources")
+    processAppBaceResources.dependsOn("processBaceResources")
 }
 
 dependencies {
