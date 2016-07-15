@@ -18,6 +18,10 @@ public abstract class BaceApp extends AbstractVerticle {
         this.appClazz = appClazz;
     }
 
+    public static void run(Class baceAppClass, String[] args) {
+
+    }
+
     @Override
     public void start() {
         httpRouter = HttpRouter.instance(vertx);

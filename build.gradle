@@ -8,28 +8,38 @@ repositories {
     jcenter()
 }
 
+compileJava {
+    options.fork = true
+    options.incremental = true
+}
+
 sourceSets {
     appBace {
-        java {
-            srcDir 'app-bace/java'
-            output.classesDir = "$buildDir/classes/main"
-        }
         groovy {
-            srcDir 'app-bace/groovy'
-            output.classesDir = "$buildDir/classes/main"
+            srcDir 'app-bace/app'
+            srcDir 'app-bace/bizrule'
+            srcDir 'app-bace/http'
+            srcDir 'app-bace/dbean'
+            srcDir 'app-bace/properties'
         }
+        resources {
+            srcDir 'app-bace/configs'
+        }
+        output.classesDir = "$buildDir/classes/main"
     }
     bace {
         java {
             srcDir 'bace/java'
-            output.classesDir = "$buildDir/classes/main"
         }
+        output.classesDir = "$buildDir/classes/main"
     }
-    compileJava.dependsOn("compileBaceJava")
-    compileJava.dependsOn("compileAppBaceJava")
+    compileGroovy.dependsOn("compileAppBaceGroovy")
+    compileAppBaceGroovy.dependsOn("compileBaceJava")
 }
 
 dependencies {
+    appBaceCompile files('bace/java')
     appBaceCompile 'org.codehaus.groovy:groovy:2.4.5'
+    appBaceCompile 'io.vertx:vertx-web:3.3.2'
     baceCompile 'io.vertx:vertx-web:3.3.2'
 }
