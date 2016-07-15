@@ -11,12 +11,13 @@ public class HttpServer {
 
     public HttpServer(Vertx _vertx) {
         vertx = _vertx;
+        vertxRouter = Router.router(vertx);
         vertxHttpServer = vertx.createHttpServer();
-        vertxHttpServer.requestHandler(vertxRouter()::accept);
+        vertxHttpServer.requestHandler(vertxRouter::accept);
 
     }
 
-    public static HttpServer start(Integer port) {
+    public HttpServer start(Integer port) {
         HttpServer server = new HttpServer(vertx);
         vertxHttpServer.listen(port);
         return server;
@@ -27,9 +28,7 @@ public class HttpServer {
     }
 
 
-    public static Router vertxRouter() {
-        if(vertxRouter == null)
-            vertxRouter = Router.router(vertx);
+    public Router vertxRouter() {
         return vertxRouter;
     }
 }

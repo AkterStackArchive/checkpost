@@ -8,8 +8,6 @@ import java.util.Map;
 public class AuthenticationRouter extends HttpRouter {
 
     {
-        Map map = new HashMap();
-
         get("", (req, res) -> {
 
         });
