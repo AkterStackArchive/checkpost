@@ -24,9 +24,9 @@ public class HttpRouter {
 
     }
 
-    private void addRoute()
+    //private void addRoute()
 
     public static void register(Class<? extends HttpRouter> httpRouterClass) {
-        Bace.routeFactory().register(HttpServer.vertxRouter(), httpRouterClass);
+        //Bace.routeFactory().register(HttpServer.vertxRouter(), httpRouterClass);
     }
 }
