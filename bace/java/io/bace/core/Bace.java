@@ -23,6 +23,7 @@ public final class Bace {
     private void initializeBaceApp() {
         try {
             app = baceAppClass.newInstance();
+            routerFactory().initialize();
         } catch(InstantiationException e) {
             //TODO
         } catch(IllegalAccessException e) {

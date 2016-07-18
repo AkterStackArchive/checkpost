@@ -7,8 +7,6 @@ import io.bace.http.handler.HttpRoutingContextHandler;
 import io.vertx.core.http.HttpMethod;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("unchecked")
@@ -16,6 +14,10 @@ public class HttpRouter<R> {
 
     private Map<String, HttpRoute> mapOfHttpRoutes = new HashMap<>();
     private String mountPoint;
+
+    public HttpRouter() {
+        mapOfHttpRoutes.values().forEach(HttpRoute::register);
+    }
 
     public R subRouteOf(String mountPoint) {
         this.mountPoint = mountPoint;
