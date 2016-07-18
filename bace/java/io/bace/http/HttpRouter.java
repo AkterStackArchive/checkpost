@@ -43,7 +43,4 @@ public class HttpRouter<R> {
         mapOfHttpRoutes.put(path, new HttpRoute(path, httpMethod, handler));
     }
 
-    public static void register(Class<? extends HttpRouter> httpRouterClass) {
-        BaceRegistry.registerHttpRouter(httpRouterClass);
-    }
 }

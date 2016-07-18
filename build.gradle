@@ -26,12 +26,14 @@ sourceSets {
             srcDir 'app-bace/conf'
         }
         output.classesDir = "$buildDir/classes/main"
+        output.resourcesDir = "$buildDir/classes/main"
     }
     bace {
         java {
             srcDir 'bace/java'
         }
         output.classesDir = "$buildDir/classes/main"
+        output.resourcesDir = "$buildDir/classes/main"
     }
     compileGroovy.dependsOn("compileAppBaceGroovy")
     compileAppBaceGroovy.dependsOn("compileBaceJava")

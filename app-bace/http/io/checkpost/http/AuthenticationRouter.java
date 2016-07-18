@@ -17,8 +17,4 @@ public class AuthenticationRouter extends HttpRouter<AuthenticationRouter> {
         });
     }
 
-    static {
-        register(AuthenticationRouter.class);
-    }
-
 }
