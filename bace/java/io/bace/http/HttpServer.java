@@ -14,7 +14,6 @@ public class HttpServer {
         vertxRouter = Router.router(vertx);
         vertxHttpServer = vertx.createHttpServer();
         vertxHttpServer.requestHandler(vertxRouter::accept);
-
     }
 
     public HttpServer start(Integer port) {

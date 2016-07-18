@@ -8,9 +8,17 @@ import java.util.Map;
 public class AuthenticationRouter extends HttpRouter {
 
     {
-        get("", (req, res) -> {
+        subRouteOf("/auth");
+
+        get("/login", (req, res) -> {
 
         });
+
+        post("/login", (req, res) -> {
+
+        });
+
+
     }
 
     static {

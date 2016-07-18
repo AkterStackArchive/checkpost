@@ -2,28 +2,34 @@ package io.bace.core;
 
 import io.bace.core.factory.HttpRouteFactory;
 
-import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Bace {
 
+    private static Class<? extends BaceApp> baceAppClass;
     private static HttpRouteFactory httpRouteFactory;
-    private static Map<Class<? extends BaceApp>, BaceApp> baceAppCache = new HashMap<>();
+    private static BaceApp app;
 
-    public static void createBaceApp(Class<? extends BaceApp> baceAppClass) {
+    public static void initialize(Class<? extends BaceApp> _baceAppClass, String[] args) {
+        baceAppClass = _baceAppClass;
+        httpRouteFactory = new HttpRouteFactory();
+
         try {
-            Constructor<? extends BaceApp> appConstructor = baceAppClass.getConstructor();
-            BaceApp baceApp = appConstructor.newInstance();
-            baceAppCache.put(baceAppClass, baceApp);
-        } catch(Exception e) {
-            //TODO handle exception
+            app = baceAppClass.newInstance();
+        } catch(InstantiationException e) {
+            //TODO
+        } catch(IllegalAccessException e) {
+            //TODO
         }
+
+    }
+
+    public static BaceApp app() {
+        return app;
     }
 
     public static HttpRouteFactory routeFactory() {
-        if(httpRouteFactory == null)
-            new HttpRouteFactory();
         return httpRouteFactory;
     }
 
