@@ -11,8 +11,9 @@ public abstract class BaceApp {
         return httpServer;
     }
 
-    public void httpServer(HttpServer httpServer) {
+    public HttpServer httpServer(HttpServer httpServer) {
         this.httpServer = httpServer;
+        return httpServer;
     }
 
     public static void run(Class<? extends BaceApp> _baceAppClass, String[] args) throws Exception {

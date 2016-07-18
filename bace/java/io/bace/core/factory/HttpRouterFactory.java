@@ -1,13 +1,25 @@
 package io.bace.core.factory;
 
+import io.bace.core.BaceRegistry;
 import io.bace.http.HttpRouter;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
-public class HttpRouteFactory {
+public class HttpRouterFactory implements BaceFactory {
 
     private static Map<Class<? extends HttpRouter>, HttpRouter> mapOfHttpRouters = new HashMap<>();
+
+    public HttpRouterFactory() {
+        initialize();
+    }
+
+    public List<? extends HttpRouter> initialize() {
+        BaceRegistry.listOfHttpRouterClass().forEach(this::register);
+        return new LinkedList<>((List<? extends HttpRouter>)mapOfHttpRouters.values()); //immutable
+    }
 
     public HttpRouter register(Class<? extends HttpRouter> httpRouterClass) {
         HttpRouter httpRouter = null;

@@ -1,5 +1,6 @@
 package io.bace.http;
 
+import io.bace.core.BaceRegistry;
 import io.bace.http.handler.HttpReqResHandler;
 import io.bace.http.handler.HttpRouteHandler;
 import io.bace.http.handler.HttpRoutingContextHandler;
@@ -12,8 +13,6 @@ import java.util.Map;
 
 @SuppressWarnings("unchecked")
 public class HttpRouter<R> {
-
-    private static List<Class<? extends HttpRouter>> listOfHttpRouterClass = new LinkedList<>();
 
     private Map<String, HttpRoute> mapOfHttpRoutes = new HashMap<>();
     private String mountPoint;
@@ -43,6 +42,6 @@ public class HttpRouter<R> {
     }
 
     public static void register(Class<? extends HttpRouter> httpRouterClass) {
-        listOfHttpRouterClass.add(httpRouterClass);
+        BaceRegistry.registerHttpRouter(httpRouterClass);
     }
 }

@@ -1,20 +1,26 @@
 package io.bace.core;
 
-import io.bace.core.factory.HttpRouteFactory;
+import io.bace.core.factory.HttpRouterFactory;
 import io.bace.http.HttpServer;
 
-public class Bace {
+public final class Bace {
 
     private static final Integer DEFAULT_HTTP_PORT = 7007;
+    private static Bace self;
 
-    private static Class<? extends BaceApp> baceAppClass;
-    private static HttpRouteFactory httpRouteFactory;
-    private static BaceApp app;
+    private Class<? extends BaceApp> baceAppClass;
+    private HttpRouterFactory httpRouterFactory;
+    private BaceApp app;
 
-    public static void initialize(Class<? extends BaceApp> _baceAppClass, String[] args) {
-        baceAppClass = _baceAppClass;
-        httpRouteFactory = new HttpRouteFactory();
+    private Bace() {}
 
+    private void test(){}
+
+    private void initializeFactories() {
+        self.httpRouterFactory = new HttpRouterFactory();
+    }
+
+    private void initializeBaceApp() {
         try {
             app = baceAppClass.newInstance();
         } catch(InstantiationException e) {
@@ -22,17 +28,38 @@ public class Bace {
         } catch(IllegalAccessException e) {
             //TODO
         }
+    }
 
-        app.httpServer(new HttpServer(DEFAULT_HTTP_PORT)); //TODO: default port should be modifiable
+    public static void initialize(Class<? extends BaceApp> _baceAppClass, String[] args) {
+        self = new Bace();
 
+        self.baceAppClass = _baceAppClass;
+
+        /* lifecycle */
+        self.initializeFactories();
+        self.initializeBaceApp();
+
+        self.app.httpServer(new HttpServer(DEFAULT_HTTP_PORT)); //TODO: default port should be modifiable
+
+    }
+
+    public static void testInitialization() {
+        try {
+            self.test();
+        } catch(NullPointerException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to initialize Bace");
+        }
     }
 
     public static BaceApp app() {
-        return app;
+        testInitialization();
+        return self.app;
     }
 
-    public static HttpRouteFactory routeFactory() {
-        return httpRouteFactory;
+    public static HttpRouterFactory routerFactory() {
+        testInitialization();
+        return self.httpRouterFactory;
     }
 
 }

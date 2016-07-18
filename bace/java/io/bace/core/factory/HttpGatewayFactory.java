@@ -1,4 +1,4 @@
 package io.bace.core.factory;
 
-public class HttpGatewayFactory {
+public class HttpGatewayFactory implements BaceFactory {
 }
