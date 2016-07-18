@@ -7,7 +7,7 @@ public class HttpServer extends AbstractVerticle {
 
     private Integer port;
     private Router vertxRouter;
-    private io.vertx.core.http.HttpServer self;
+    private io.vertx.core.http.HttpServer vertxHttpServer;
 
     public HttpServer(Integer port) {
         this.port = port;
@@ -15,17 +15,17 @@ public class HttpServer extends AbstractVerticle {
 
     @Override
     public void start() {
-        self = vertx.createHttpServer();
+        vertxHttpServer = vertx.createHttpServer();
         vertxRouter = Router.router(vertx);
-        self.requestHandler(vertxRouter::accept);
-        self.listen(port);
+        vertxHttpServer.requestHandler(vertxRouter::accept);
+        vertxHttpServer.listen(port);
     }
 
     public io.vertx.core.http.HttpServer getVertxHttpServer() {
-        return self;
+        return vertxHttpServer;
     }
 
-    public Router vertxRouter() {
+    public Router router() {
         return vertxRouter;
     }
 }
