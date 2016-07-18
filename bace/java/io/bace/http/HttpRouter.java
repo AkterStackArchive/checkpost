@@ -1,5 +1,8 @@
 package io.bace.http;
 
+import io.bace.http.handler.HttpReqResHandler;
+import io.bace.http.handler.HttpRouteHandler;
+import io.bace.http.handler.HttpRoutingContextHandler;
 import io.vertx.core.http.HttpMethod;
 
 import java.util.HashMap;

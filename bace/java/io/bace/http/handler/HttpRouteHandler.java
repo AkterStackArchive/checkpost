@@ -1,4 +1,4 @@
-package io.bace.http;
+package io.bace.http.handler;
 
 public interface HttpRouteHandler {
 }

@@ -1,5 +1,6 @@
 package io.bace.http;
 
+import io.bace.http.handler.HttpRouteHandler;
 import io.vertx.core.http.HttpMethod;
 
 public class HttpRoute {

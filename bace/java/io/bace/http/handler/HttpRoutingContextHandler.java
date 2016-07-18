@@ -1,4 +1,4 @@
-package io.bace.http;
+package io.bace.http.handler;
 
 import io.vertx.ext.web.RoutingContext;
 
