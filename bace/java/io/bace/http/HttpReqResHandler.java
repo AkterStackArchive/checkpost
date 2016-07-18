@@ -5,6 +5,6 @@ import io.vertx.core.http.HttpServerResponse;
 
 public interface HttpReqResHandler {
 
-    void action(HttpServerRequest req, HttpServerResponse res);
+    void handle(HttpServerRequest req, HttpServerResponse res);
 
 }

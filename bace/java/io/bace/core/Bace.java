@@ -1,11 +1,11 @@
 package io.bace.core;
 
 import io.bace.core.factory.HttpRouteFactory;
-
-import java.util.HashMap;
-import java.util.Map;
+import io.bace.http.HttpServer;
 
 public class Bace {
+
+    private static final Integer DEFAULT_HTTP_PORT = 7007;
 
     private static Class<? extends BaceApp> baceAppClass;
     private static HttpRouteFactory httpRouteFactory;
@@ -22,6 +22,8 @@ public class Bace {
         } catch(IllegalAccessException e) {
             //TODO
         }
+
+        app.httpServer(new HttpServer(DEFAULT_HTTP_PORT)); //TODO: default port should be modifiable
 
     }
 

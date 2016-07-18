@@ -1,25 +1,9 @@
 package io.bace.http;
 
-import io.netty.handler.codec.http.HttpRequest;
-import io.netty.handler.codec.http.HttpResponse;
 import io.vertx.ext.web.RoutingContext;
 
-import java.util.Map;
+public interface HttpRouteHandler {
 
-/** similar of controller layer */
-public abstract class HttpRouteHandler {
-
-    private HttpRequest request;
-    private HttpResponse response;
-    private Map<String, Object> params;
-    private RoutingContext routingContext;
-
-    public void get(String path, HttpReqResHandler handler) {
-
-    }
-
-    public static void register(Class<HttpRouteHandler> httpRouteHandlerClass) {
-        //TODO do registration
-    }
+    void handle(RoutingContext rctx);
 
 }

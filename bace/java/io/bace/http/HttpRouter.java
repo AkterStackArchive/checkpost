@@ -1,32 +1,36 @@
 package io.bace.http;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
-/**
- * url mappings
- */
-public class HttpRouter {
+@SuppressWarnings("unchecked")
+public class HttpRouter<R> {
 
-    private static List<Class<? extends HttpRouter>> listOfHttpRouter = new ArrayList<>();
+    private static List<Class<? extends HttpRouter>> listOfHttpRouterClass = new LinkedList<>();
 
     private static String mountPoint;
 
-    public void subRouteOf(String _mountPoint) {
+    public R subRouteOf(String _mountPoint) {
         mountPoint = _mountPoint;
+        return (R)this;
     }
 
-    public void get(String path, HttpReqResHandler handler) {
+    public R get(String path, HttpReqResHandler handler) {
 
+        return (R)this;
     }
 
-    public void post(String path, HttpReqResHandler handler) {
+    public R post(String path, HttpReqResHandler handler) {
 
+        return (R)this;
     }
 
-    private void addRoute() {}
+    private R route() {
+
+        return (R)this;
+    }
 
     public static void register(Class<? extends HttpRouter> httpRouterClass) {
-        listOfHttpRouter.add(httpRouterClass);
+        listOfHttpRouterClass.add(httpRouterClass);
     }
 }

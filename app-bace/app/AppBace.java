@@ -2,8 +2,8 @@ import io.bace.core.BaceApp;
 
 public class AppBace extends BaceApp {
 
-    public static void main(String[] args) {
-        //BaceApp.run(AppBace.class, args);
+    public static void main(String[] args) throws Exception {
+        BaceApp.run(AppBace.class, args);
     }
 
 }
