@@ -2,10 +2,7 @@ package io.checkpost.http;
 
 import io.bace.http.HttpRouter;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class AuthenticationRouter extends HttpRouter {
+public class AuthenticationRouter extends HttpRouter<AuthenticationRouter> {
 
     {
         subRouteOf("/auth");
@@ -17,8 +14,6 @@ public class AuthenticationRouter extends HttpRouter {
         post("/login", (req, res) -> {
 
         });
-
-
     }
 
     static {
