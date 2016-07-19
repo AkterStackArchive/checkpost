@@ -14,7 +14,7 @@ public class BaceRegistry {
 
     public static void registerHttpRouters() {
         //HttpRouter.class.isAssignableFrom(//TODO)
-        listOfHttpRouterClass.add(httpRouterClass);
+        //listOfHttpRouterClass.add(httpRouterClass);
     }
 
     public static List<Class<? extends HttpRouter>> listOfHttpRouterClass() {
@@ -29,7 +29,7 @@ public class BaceRegistry {
      * @throws ClassNotFoundException
      * @throws IOException
      */
-    private static List<Class> getClasses(String packageName)
+    public static List<Class> getClasses(String packageName)
             throws ClassNotFoundException, IOException {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         assert classLoader != null;
@@ -54,7 +54,7 @@ public class BaceRegistry {
      * @return The classes
      * @throws ClassNotFoundException
      */
-    private static List<Class> findClasses(File directory, String packageName) throws ClassNotFoundException {
+    public static List<Class> findClasses(File directory, String packageName) throws ClassNotFoundException {
         List<Class> classes = new ArrayList<>();
         if (!directory.exists()) {
             return classes;

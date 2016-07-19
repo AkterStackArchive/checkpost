@@ -1,19 +1,16 @@
 import io.bace.core.BaceApp;
+import io.bace.core.BaceAppPackage;
 import io.bace.core.BaceRegistry;
-import io.checkpost.http.AuthenticationRouter;
 
-import java.lang.reflect.Field;
 import java.util.List;
 
+@BaceAppPackage("io.checkpost")
 public class AppBace extends BaceApp {
 
     public static void main(String[] args) throws Exception {
         BaceApp.run(AppBace.class, args);
-        Field f = ClassLoader.class.getDeclaredField("classes");
-        f.setAccessible(true);
 
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        List<Class> classes =  (List<Class>) f.get(classLoader);
+        List<Class> classes =  BaceRegistry.getClasses("io.checkpost");
         classes.forEach(System.out::println);
     }
 

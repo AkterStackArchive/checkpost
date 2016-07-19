@@ -3,6 +3,8 @@ package io.bace.core;
 import io.bace.core.factory.HttpRouterFactory;
 import io.bace.http.HttpServer;
 
+import java.util.List;
+
 public final class Bace {
 
     private static final Integer DEFAULT_HTTP_PORT = 7007;
@@ -15,6 +17,14 @@ public final class Bace {
     private Bace() {}
 
     private void test(){}
+
+    private List<Class> loadBaceAppClasses() {
+        BaceAppPackage baceAppPackageAnnotation = baceAppClass.getAnnotation(BaceAppPackage.class);
+        if(baceAppPackageAnnotation == null)
+            return null;
+        String baceAppPackage = baceAppPackageAnnotation.value();
+        return null;
+    }
 
     private void initializeFactories() {
         self.httpRouterFactory = new HttpRouterFactory();

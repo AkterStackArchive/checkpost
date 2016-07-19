@@ -17,4 +17,8 @@ public class AuthenticationRouter extends HttpRouter<AuthenticationRouter> {
         });
     }
 
+    static {
+        System.out.println("888888888888888");
+    }
+
 }
