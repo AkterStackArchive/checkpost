@@ -23,9 +23,7 @@ public class HttpRoute {
         Bace.app().httpServer().router().route(path).method(httpMethod).handler(rctx -> {
             if(httpRouteHandler instanceof HttpReqResHandler)
                 ((HttpReqResHandler)httpRouteHandler).handle(rctx.request(), rctx.response());
-            rctx.next();
         });
-        System.out.println(777777);
     }
 
     @Override

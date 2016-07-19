@@ -15,7 +15,6 @@ public class HttpRouter<R> {
     private List<HttpRoute> listOfHttpRoutes = new LinkedList<>();
 
     public void initialize() {
-        System.out.println(listOfHttpRoutes);
         for(HttpRoute httpRoute : listOfHttpRoutes) {
             httpRoute.register();
         }
