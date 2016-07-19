@@ -18,9 +18,9 @@ sourceSets {
         groovy {
             srcDir 'app-bace/app'
             srcDir 'app-bace/bizrule'
-            srcDir 'app-bace/http'
             srcDir 'app-bace/dbeans'
             srcDir 'app-bace/properties'
+            srcDir 'app-bace/routers'
         }
         resources {
             srcDir 'app-bace/conf'
