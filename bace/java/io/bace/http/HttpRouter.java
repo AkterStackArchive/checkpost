@@ -1,22 +1,24 @@
 package io.bace.http;
 
-import io.bace.core.BaceRegistry;
 import io.bace.http.handler.HttpReqResHandler;
 import io.bace.http.handler.HttpRouteHandler;
 import io.bace.http.handler.HttpRoutingContextHandler;
 import io.vertx.core.http.HttpMethod;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedList;
+import java.util.List;
 
 @SuppressWarnings("unchecked")
 public class HttpRouter<R> {
 
-    private Map<String, HttpRoute> mapOfHttpRoutes = new HashMap<>();
     private String mountPoint;
+    private List<HttpRoute> listOfHttpRoutes = new LinkedList<>();
 
-    public HttpRouter() {
-        mapOfHttpRoutes.values().forEach(HttpRoute::register);
+    public void initialize() {
+        System.out.println(listOfHttpRoutes);
+        for(HttpRoute httpRoute : listOfHttpRoutes) {
+            httpRoute.register();
+        }
     }
 
     public R subRouteOf(String mountPoint) {
@@ -40,7 +42,7 @@ public class HttpRouter<R> {
     }
 
     public void registerHttpRoute(String path, HttpMethod httpMethod, HttpRouteHandler handler) {
-        mapOfHttpRoutes.put(path, new HttpRoute(path, httpMethod, handler));
+        listOfHttpRoutes.add(new HttpRoute(path, httpMethod, handler));
     }
 
 }

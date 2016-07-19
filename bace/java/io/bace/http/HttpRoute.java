@@ -4,7 +4,8 @@ import io.bace.core.Bace;
 import io.bace.http.handler.HttpReqResHandler;
 import io.bace.http.handler.HttpRouteHandler;
 import io.vertx.core.Handler;
-import io.vertx.core.http.HttpMethod;
+import io.vertx.core.http.*;
+import io.vertx.ext.web.Router;
 
 public class HttpRoute {
 
@@ -22,7 +23,9 @@ public class HttpRoute {
         Bace.app().httpServer().router().route(path).method(httpMethod).handler(rctx -> {
             if(httpRouteHandler instanceof HttpReqResHandler)
                 ((HttpReqResHandler)httpRouteHandler).handle(rctx.request(), rctx.response());
+            rctx.next();
         });
+        System.out.println(777777);
     }
 
     @Override

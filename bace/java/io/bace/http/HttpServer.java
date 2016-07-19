@@ -19,8 +19,8 @@ public class HttpServer extends AbstractVerticle {
         vertxHttpServer = vertx.createHttpServer();
         vertxRouter = Router.router(vertx);
         vertxHttpServer.requestHandler(vertxRouter::accept);
+        doroute();
         vertxHttpServer.listen(port);
-        //doroute();
     }
 
     private void doroute() {
@@ -30,8 +30,18 @@ public class HttpServer extends AbstractVerticle {
             HttpServerResponse response = routingContext.response();
             response.putHeader("content-type", "text/plain");
 
+            routingContext.next();
             // Write to the response and end it
-            response.end("Hello World from Vert.x-!");
+            //response.end("Hello World from Vert.x-!");
+        });
+        vertxRouter.route("/login").handler(routingContext -> {
+
+            // This handler will be called for every request
+            HttpServerResponse response = routingContext.response();
+            response.putHeader("content-type", "text/plain");
+
+            // Write to the response and end it
+            response.end("Hello World from Vert.x-2!");
         });
     }
 

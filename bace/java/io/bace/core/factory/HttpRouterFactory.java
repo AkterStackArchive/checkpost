@@ -25,7 +25,9 @@ public class HttpRouterFactory implements BaceFactory {
         HttpRouter httpRouter = null;
         try {
             httpRouter = httpRouterClass.newInstance();
+            httpRouter.initialize();
         } catch(Exception e) {
+            e.printStackTrace();
             //TODO:
         }
         mapOfHttpRouters.put(httpRouterClass, httpRouter);

@@ -61,8 +61,10 @@ public final class Bace {
             app = baceAppClass.newInstance();
             routerFactory().initialize();
         } catch(InstantiationException e) {
+            e.printStackTrace();
             //TODO
         } catch(IllegalAccessException e) {
+            e.printStackTrace();
             //TODO
         }
     }
