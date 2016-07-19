@@ -10,8 +10,10 @@ public class AppBace extends BaceApp {
     public static void main(String[] args) throws Exception {
         BaceApp.run(AppBace.class, args);
 
-        List<Class> classes =  BaceRegistry.getClasses("io.checkpost");
+        List<String> classes =  BaceRegistry.listOfClassNames("io.checkpost");
         classes.forEach(System.out::println);
+        /*for(String className : classes)
+            Class.forName(className);*/
     }
 
 }

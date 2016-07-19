@@ -1,8 +1,12 @@
 package io.bace.core;
 
 import io.bace.core.factory.HttpRouterFactory;
+import io.bace.http.HttpRouter;
 import io.bace.http.HttpServer;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public final class Bace {
@@ -10,20 +14,42 @@ public final class Bace {
     private static final Integer DEFAULT_HTTP_PORT = 7007;
     private static Bace self;
 
+    private String[] args;
     private Class<? extends BaceApp> baceAppClass;
     private HttpRouterFactory httpRouterFactory;
     private BaceApp app;
 
     private Bace() {}
 
-    private void test(){}
+    private void test() {}
 
     private List<Class> loadBaceAppClasses() {
         BaceAppPackage baceAppPackageAnnotation = baceAppClass.getAnnotation(BaceAppPackage.class);
         if(baceAppPackageAnnotation == null)
             return null;
-        String baceAppPackage = baceAppPackageAnnotation.value();
-        return null;
+        String[] baceAppPackages = baceAppPackageAnnotation.value();
+        List<Class> classes = new LinkedList<>();
+        try {
+            for(String pkg : baceAppPackages)
+                for(String className : BaceRegistry.listOfClassNames(pkg)) {
+                    classes.add(Class.forName(className));
+                }
+        } catch(ClassNotFoundException e) {
+            e.printStackTrace();
+            //TODO:
+            // System.out.println();
+        } catch(IOException e) {
+            //TODO:
+            e.printStackTrace();
+        }
+
+        /* TODO: add other baceapp class registry */
+        for(Class clazz : classes) {
+            if(HttpRouter.class.isAssignableFrom(clazz))
+                BaceRegistry.registerHttpRouters(clazz);
+        }
+
+        return classes;
     }
 
     private void initializeFactories() {
@@ -44,10 +70,12 @@ public final class Bace {
     public static void initialize(Class<? extends BaceApp> _baceAppClass, String[] args) {
         self = new Bace();
 
+        self.args = args;
         self.baceAppClass = _baceAppClass;
 
         /* lifecycle */
         self.initializeFactories();
+        self.loadBaceAppClasses();
         self.initializeBaceApp();
 
         self.app.httpServer(new HttpServer(DEFAULT_HTTP_PORT)); //TODO: default port should be modifiable

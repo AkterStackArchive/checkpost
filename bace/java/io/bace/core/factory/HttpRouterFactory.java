@@ -17,7 +17,7 @@ public class HttpRouterFactory implements BaceFactory {
     }
 
     public List<? extends HttpRouter> initialize() {
-        BaceRegistry.listOfHttpRouterClass().forEach(this::register);
+        BaceRegistry.listOfHttpRouterClasses().forEach(this::register);
         return new LinkedList<>(mapOfHttpRouters.values()); //immutable
     }
 

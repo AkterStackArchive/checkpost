@@ -1,7 +1,6 @@
 package io.bace.core;
 
 import io.bace.http.HttpRouter;
-import javafx.scene.effect.Reflection;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,27 +9,17 @@ import java.util.*;
 
 public class BaceRegistry {
 
-    private static List<Class<? extends HttpRouter>> listOfHttpRouterClass = new LinkedList<>();
+    private static List<Class<? extends HttpRouter>> listOfHttpRouterClasses = new LinkedList<>();
 
-    public static void registerHttpRouters() {
-        //HttpRouter.class.isAssignableFrom(//TODO)
-        //listOfHttpRouterClass.add(httpRouterClass);
+    public static void registerHttpRouters(Class<? extends HttpRouter> httpRouterClass) {
+        listOfHttpRouterClasses.add(httpRouterClass);
     }
 
-    public static List<Class<? extends HttpRouter>> listOfHttpRouterClass() {
-        return new LinkedList<>(listOfHttpRouterClass); //immutable
+    public static List<Class<? extends HttpRouter>> listOfHttpRouterClasses() {
+        return new LinkedList<>(listOfHttpRouterClasses); //immutable
     }
 
-    /**
-     * Scans all classes accessible from the context class loader which belong to the given package and subpackages.
-     *
-     * @param packageName The base package
-     * @return The classes
-     * @throws ClassNotFoundException
-     * @throws IOException
-     */
-    public static List<Class> getClasses(String packageName)
-            throws ClassNotFoundException, IOException {
+    public static List<String> listOfClassNames(String packageName) throws IOException {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         assert classLoader != null;
         String path = packageName.replace('.', '/');
@@ -40,35 +29,28 @@ public class BaceRegistry {
             URL resource = resources.nextElement();
             dirs.add(new File(resource.getFile()));
         }
-        List<Class> classes = new ArrayList<>();
+        List<String> classNames = new ArrayList<>();
         for (File directory : dirs) {
-            classes.addAll(findClasses(directory, packageName));
+            classNames.addAll(findClasses(directory, packageName));
         }
-        return classes;
+        return classNames;
     }
-    /**
-     * Recursive method used to find all classes in a given directory and subdirs.
-     *
-     * @param directory   The base directory
-     * @param packageName The package name for classes found inside the base directory
-     * @return The classes
-     * @throws ClassNotFoundException
-     */
-    public static List<Class> findClasses(File directory, String packageName) throws ClassNotFoundException {
-        List<Class> classes = new ArrayList<>();
+
+    private static List<String> findClasses(File directory, String packageName) {
+        List<String> classNames = new ArrayList<>();
         if (!directory.exists()) {
-            return classes;
+            return classNames;
         }
         File[] files = directory.listFiles();
         for (File file : files) {
             if (file.isDirectory()) {
                 assert !file.getName().contains(".");
-                classes.addAll(findClasses(file, packageName + "." + file.getName()));
+                classNames.addAll(findClasses(file, packageName + "." + file.getName()));
             } else if (file.getName().endsWith(".class")) {
-                classes.add(Class.forName(packageName + '.' + file.getName().substring(0, file.getName().length() - 6)));
+                classNames.add(packageName + '.' + file.getName().replace(".class", ""));
             }
         }
-        return classes;
+        return classNames;
     }
 
 }
