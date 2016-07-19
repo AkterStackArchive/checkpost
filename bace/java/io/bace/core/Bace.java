@@ -3,16 +3,16 @@ package io.bace.core;
 import io.bace.core.factory.HttpRouterFactory;
 import io.bace.http.HttpRouter;
 import io.bace.http.HttpServer;
+import io.vertx.core.Vertx;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public final class Bace {
 
     private static final Integer DEFAULT_HTTP_PORT = 7007;
-    private static Bace self;
+    private static Bace bace;
 
     private String[] args;
     private Class<? extends BaceApp> baceAppClass;
@@ -41,6 +41,7 @@ public final class Bace {
         } catch(IOException e) {
             //TODO:
             e.printStackTrace();
+            System.out.println();
         }
 
         /* TODO: add other baceapp class registry */
@@ -53,40 +54,40 @@ public final class Bace {
     }
 
     private void initializeFactories() {
-        self.httpRouterFactory = new HttpRouterFactory();
+        bace.httpRouterFactory = new HttpRouterFactory();
     }
 
     private void initializeBaceApp() {
         try {
             app = baceAppClass.newInstance();
-            routerFactory().initialize();
+            app.httpServer(new HttpServer(DEFAULT_HTTP_PORT)); //TODO: default port should be modifiable
         } catch(InstantiationException e) {
             e.printStackTrace();
             //TODO
         } catch(IllegalAccessException e) {
             e.printStackTrace();
+            System.out.printf("");
             //TODO
         }
     }
 
     public static void initialize(Class<? extends BaceApp> _baceAppClass, String[] args) {
-        self = new Bace();
+        bace = new Bace();
 
-        self.args = args;
-        self.baceAppClass = _baceAppClass;
+        bace.args = args;
+        bace.baceAppClass = _baceAppClass;
 
         /* lifecycle */
-        self.initializeFactories();
-        self.loadBaceAppClasses();
-        self.initializeBaceApp();
+        bace.initializeFactories();
+        bace.loadBaceAppClasses();
+        bace.initializeBaceApp();
 
-        self.app.httpServer(new HttpServer(DEFAULT_HTTP_PORT)); //TODO: default port should be modifiable
 
     }
 
     public static void testInitialization() {
         try {
-            self.test();
+            bace.test();
         } catch(NullPointerException e) {
             e.printStackTrace();
             throw new RuntimeException("Failed to initialize Bace");
@@ -95,12 +96,12 @@ public final class Bace {
 
     public static BaceApp app() {
         testInitialization();
-        return self.app;
+        return bace.app;
     }
 
     public static HttpRouterFactory routerFactory() {
         testInitialization();
-        return self.httpRouterFactory;
+        return bace.httpRouterFactory;
     }
 
 }

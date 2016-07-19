@@ -1,5 +1,6 @@
 package io.bace.http;
 
+import io.bace.core.Bace;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.Router;
@@ -18,8 +19,8 @@ public class HttpServer extends AbstractVerticle {
     public void start() {
         vertxHttpServer = vertx.createHttpServer();
         vertxRouter = Router.router(vertx);
+        Bace.routerFactory().initialize(); //TODO: remove this to lifecycle method
         vertxHttpServer.requestHandler(vertxRouter::accept);
-        doroute();
         vertxHttpServer.listen(port);
     }
 
@@ -33,15 +34,6 @@ public class HttpServer extends AbstractVerticle {
             routingContext.next();
             // Write to the response and end it
             //response.end("Hello World from Vert.x-!");
-        });
-        vertxRouter.route("/login").handler(routingContext -> {
-
-            // This handler will be called for every request
-            HttpServerResponse response = routingContext.response();
-            response.putHeader("content-type", "text/plain");
-
-            // Write to the response and end it
-            response.end("Hello World from Vert.x-2!");
         });
     }
 
