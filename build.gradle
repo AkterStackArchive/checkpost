@@ -35,16 +35,27 @@ sourceSets {
         output.classesDir = "$buildDir/classes/main"
         output.resourcesDir = "$buildDir/classes/main"
     }
+    dbean {
+        java {
+            srcDir 'dbean/java'
+        }
+        output.classesDir = "$buildDir/classes/main"
+        output.resourcesDir = "$buildDir/classes/main"
+    }
     compileGroovy.dependsOn("compileAppBaceGroovy")
+    compileAppBaceGroovy.dependsOn("compileDbeanJava")
     compileAppBaceGroovy.dependsOn("compileBaceJava")
 
     processResources.dependsOn("processAppBaceResources")
+    processAppBaceResources.dependsOn("processDbeanResources")
     processAppBaceResources.dependsOn("processBaceResources")
 }
 
 dependencies {
+    appBaceCompile files('dbean/java')
     appBaceCompile files('bace/java')
     appBaceCompile 'org.codehaus.groovy:groovy:2.4.5'
     appBaceCompile 'io.vertx:vertx-web:3.3.2'
+
     baceCompile 'io.vertx:vertx-web:3.3.2'
 }
