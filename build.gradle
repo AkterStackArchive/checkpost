@@ -52,6 +52,9 @@ sourceSets {
 }
 
 dependencies {
+    compile files('app-bace/dbeans')
+    compile files('dbean/java')
+    compile files('bace/java')
     appBaceCompile files('dbean/java')
     appBaceCompile files('bace/java')
     appBaceCompile 'org.codehaus.groovy:groovy:2.4.5'
