@@ -1,15 +1,35 @@
 package io.checkpost.dbean;
 
-import io.dbean.core.Dbean;
+import io.dbean.core.DBean;
 
-public class User extends Dbean<User> {
+public class User extends DBean<User> {
 
     private Long id;
     private String username;
     private String password;
 
-    public User() {
-        id = 1l; username ="username"; password="password";
+    public Long id() {
+        return id;
+    }
+
+    public Long id(Long id) {
+        return this.id = id;
+    }
+
+    public String username() {
+        return username;
+    }
+
+    public String username(String username) {
+        return this.username = username;
+    }
+
+    public String password() {
+        return password;
+    }
+
+    public String password(String password) {
+        return this.password = password;
     }
 
     @Override

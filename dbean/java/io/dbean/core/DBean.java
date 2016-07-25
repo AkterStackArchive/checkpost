@@ -1,15 +1,7 @@
 package io.dbean.core;
 
 
-public abstract class Dbean<D extends Dbean> {
-
-
-
-    public D save() {
-        D dbean = (D)this;
-        System.out.println(dbean);
-        return null;
-    }
+public abstract class DBean<D extends DBean> {
 
     public D create() {
         return null;
@@ -20,6 +12,12 @@ public abstract class Dbean<D extends Dbean> {
     }
 
     public D delete() {
+        return null;
+    }
+
+    public D save() {
+        D dbean = (D)this;
+        System.out.println(dbean);
         return null;
     }
 

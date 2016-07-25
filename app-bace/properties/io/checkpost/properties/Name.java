@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface Title {
-    int[] length() default {0, 1024};
-    boolean isEmpty() default true;
+public @interface Name {
+    int[] length() default {2, 1024};
+    boolean isEmpty() default false;
 }
