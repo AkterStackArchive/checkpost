@@ -1,4 +1,4 @@
-package io.dbean.core;
+package io.dbean.util;
 
 public class DBeanUtil {
 

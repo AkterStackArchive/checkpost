@@ -1,5 +1,6 @@
 package io.dbean.core;
 
+import io.dbean.util.DBeanUtil;
 import io.dbean.validator.PropertyRule;
 
 import java.util.HashMap;

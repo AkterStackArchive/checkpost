@@ -1,4 +1,6 @@
-package io.dbean.validator;
+package io.dbean.util.property.rule;
+
+import io.dbean.validator.PropertyRule;
 
 public class Length implements PropertyRule<String, Integer[]> {
     @Override
