@@ -33,7 +33,5 @@ sourceSets {
 
 dependencies {
     appBaceCompile 'org.codehaus.groovy:groovy:2.4.5'
-    appBaceCompile 'io.vertx:vertx-web:3.3.2'
-
-    //baceCompile 'io.vertx:vertx-web:3.3.2'
+    appBaceCompile 'io.bace:bace:1.0-SNAPSHOT'
 }
