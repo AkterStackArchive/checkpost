@@ -24,12 +24,6 @@ sourceSets {
     processResources.dependsOn("process${toCamelCase(baceRoot)}Resources")
 }
 
-/*repositories {
-    mavenLocal()
-    mavenCentral()
-    jcenter()
-}*/
-
 dependencies {
     project.configurations.each { conf ->
         conf.dependencies.each { dep ->
