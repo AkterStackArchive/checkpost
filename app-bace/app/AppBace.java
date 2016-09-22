@@ -1,8 +1,5 @@
 import io.bace.core.BaceApp;
 import io.bace.core.BaceAppPackage;
-import io.bace.core.BaceRegistry;
-
-import java.util.List;
 
 @BaceAppPackage("io.checkpost")
 public class AppBace extends BaceApp {
