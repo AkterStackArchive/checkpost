@@ -1,0 +1,35 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+
+sourceSets {
+    appBace {
+        groovy {
+            srcDir 'app-bace/app'
+            srcDir 'app-bace/bizrule'
+            srcDir 'app-bace/properties'
+            srcDir 'app-bace/routers'
+        }
+        resources {
+            srcDir 'app-bace/conf'
+        }
+        output.classesDir = "$buildDir/classes/main"
+        output.resourcesDir = "$buildDir/classes/main"
+    }
+    compileGroovy.dependsOn("compileAppBaceGroovy")
+    processResources.dependsOn("processAppBaceResources")
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+}
+
+task showCompileDep << {
+    project.configurations.each { conf ->
+        println "    Configuration: ${conf.name}"
+        conf.dependencies.each { dep ->
+            println "      ${dep.group}:${dep.name}:${dep.version}"
+        }
+    }
+}

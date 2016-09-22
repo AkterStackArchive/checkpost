@@ -1,4 +1,4 @@
-apply plugin: 'idea'
+apply from: 'gradle/bace.gradle'
 apply plugin: 'java'
 apply plugin: 'groovy'
 
@@ -13,25 +13,7 @@ compileJava {
     options.incremental = true
 }
 
-sourceSets {
-    appBace {
-        groovy {
-            srcDir 'app-bace/app'
-            srcDir 'app-bace/bizrule'
-            srcDir 'app-bace/properties'
-            srcDir 'app-bace/routers'
-        }
-        resources {
-            srcDir 'app-bace/conf'
-        }
-        output.classesDir = "$buildDir/classes/main"
-        output.resourcesDir = "$buildDir/classes/main"
-    }
-    compileGroovy.dependsOn("compileAppBaceGroovy")
-    processResources.dependsOn("processAppBaceResources")
-}
-
 dependencies {
-    appBaceCompile 'org.codehaus.groovy:groovy:2.4.5'
-    appBaceCompile 'io.bace:bace:1.0-SNAPSHOT'
+    compile 'org.codehaus.groovy:groovy:2.4.5'
+    compile 'io.bace:bace:1.0-SNAPSHOT'
 }
