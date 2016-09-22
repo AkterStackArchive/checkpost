@@ -1,35 +1,50 @@
 apply plugin: 'java'
 apply plugin: 'groovy'
 
+String baceRoot = 'app-bace'
+String[] baceSrcDirs = ['app', 'bizrules', 'properties', 'routers']
+String[] baceRsrcDirs = ['conf']
+
 sourceSets {
     appBace {
         groovy {
-            srcDir 'app-bace/app'
-            srcDir 'app-bace/bizrule'
-            srcDir 'app-bace/properties'
-            srcDir 'app-bace/routers'
+            baceSrcDirs.each {
+                srcDir "$baceRoot/$it"
+            }
         }
         resources {
-            srcDir 'app-bace/conf'
+            baceRsrcDirs.each {
+                srcDir "$baceRoot/$it"
+            }
         }
         output.classesDir = "$buildDir/classes/main"
         output.resourcesDir = "$buildDir/classes/main"
     }
-    compileGroovy.dependsOn("compileAppBaceGroovy")
-    processResources.dependsOn("processAppBaceResources")
+    compileGroovy.dependsOn("compile${toCamelCase(baceRoot)}Groovy")
+    processResources.dependsOn("process${toCamelCase(baceRoot)}Resources")
 }
 
-repositories {
+/*repositories {
     mavenLocal()
     mavenCentral()
     jcenter()
-}
+}*/
 
-task showCompileDep << {
+dependencies {
     project.configurations.each { conf ->
-        println "    Configuration: ${conf.name}"
         conf.dependencies.each { dep ->
-            println "      ${dep.group}:${dep.name}:${dep.version}"
+            "${toLowerCamelCase(baceRoot)}${toCamelCase(conf.name)}"("${dep.group}:${dep.name}:${dep.version}")
         }
     }
+}
+
+String toCamelCase(String source) {
+    return source.split('-').collect {
+        it.capitalize()
+    }.join('')
+}
+
+String toLowerCamelCase(String source) {
+    String cs = toCamelCase(source)
+    return cs[0].toLowerCase() + cs.substring(1)
 }
