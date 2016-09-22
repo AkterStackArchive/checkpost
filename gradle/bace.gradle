@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'groovy'
 
 String baceRoot = 'app-bace'
-String[] baceSrcDirs = ['app', 'bizrules', 'properties', 'routers']
+String[] baceSrcDirs = ['app', 'bizrules', 'edges', 'nodes', 'properties', 'routers']
 String[] baceRsrcDirs = ['conf']
 
 sourceSets {
