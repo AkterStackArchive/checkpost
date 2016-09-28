@@ -1,0 +1,7 @@
+def root = ".."
+ext {
+    includes = [
+            "bace": root,
+            "edgenode": root
+    ]
+}

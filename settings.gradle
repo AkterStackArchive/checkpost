@@ -1,0 +1,6 @@
+rootProject.name = 'checkpost'
+apply from: 'includes.gradle'
+includes.each { module, parent ->
+    include(":$module")
+    project(":$module").projectDir = file("$parent/$module")
+}
