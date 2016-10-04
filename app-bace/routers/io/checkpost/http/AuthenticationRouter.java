@@ -1,7 +1,5 @@
 package io.checkpost.http;
 
-import io.bace.http.HttpRequestContext;
-import io.bace.http.HttpResponseContext;
 import io.bace.http.HttpRouter;
 import io.bace.http.context.HttpParamContext;
 import io.bace.http.handler.HttpRoutingContextHandler;
@@ -17,7 +15,7 @@ public class AuthenticationRouter extends HttpRouter<AuthenticationRouter> {
             //res.end("Hello so!");
         });
 
-        get("/login", (HttpRoutingContext params) -> {
+        get("/login", (params) -> {
 
 
 
