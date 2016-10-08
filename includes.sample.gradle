@@ -1,8 +1,8 @@
 def parent = "/path/to/modules/parent/directory"
 ext {
     includes = [
-            "module1": parent,
-            "module2": parent,
-            "module3": "/different/parent/directory"
+            module1: parent,
+            module2: parent,
+            module3: "/different/parent/directory"
     ]
 }

@@ -6,7 +6,7 @@ import io.bace.http.handler.HttpRoutingContextHandler;
 
 public class AuthenticationRouter extends HttpRouter<AuthenticationRouter> {
 
-    {
+    /*{
         subRouteOf("/auth");
 
         get("/login", (req, res) -> {
@@ -21,6 +21,6 @@ public class AuthenticationRouter extends HttpRouter<AuthenticationRouter> {
 
 
         };
-    }
+    }*/
 
 }

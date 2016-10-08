@@ -1,8 +1,0 @@
-def root = ".."
-ext {
-    includes = [
-            "bace": root,
-            "edgenode": root,
-            "hackable": root
-    ]
-}
