@@ -2,7 +2,11 @@ package io.checkpost.http;
 
 import io.bace.http.HttpRouter;
 import io.bace.http.context.HttpParamContext;
+import io.bace.http.handler.HttpParamHandler;
 import io.bace.http.handler.HttpRoutingContextHandler;
+import io.vertx.ext.web.RoutingContext;
+
+import java.util.Map;
 
 public class AuthenticationRouter extends HttpRouter<AuthenticationRouter> {
 
@@ -15,12 +19,11 @@ public class AuthenticationRouter extends HttpRouter<AuthenticationRouter> {
             //res.end("Hello so!");
         });
 
-        get("/login", (params) -> {
+        get("/login", (HttpParamContext params) -> {
 
 
 
-
-        };
+        });
     }
 
 }
