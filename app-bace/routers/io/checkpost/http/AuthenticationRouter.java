@@ -12,6 +12,8 @@ public class AuthenticationRouter extends HttpRouter<AuthenticationRouter> {
 
     {
         subRouteOf("/auth");
+        //accept("");
+        //contentType("text/plain");
 
         get("/login", (req, res) -> {
             //res.putHeader("content-type", "text/plain");
@@ -19,11 +21,6 @@ public class AuthenticationRouter extends HttpRouter<AuthenticationRouter> {
             //res.end("Hello so!");
         });
 
-        get("/login", (HttpParamContext params) -> {
-
-
-
-        });
     }
 
 }
