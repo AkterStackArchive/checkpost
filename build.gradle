@@ -2,21 +2,18 @@ apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'idea'
 
+compileJava {
+    options.fork = true
+    options.incremental = true
+}
+
 repositories {
     mavenLocal()
     mavenCentral()
     jcenter()
 }
 
-compileJava {
-    options.fork = true
-    options.incremental = true
-}
-
-
 dependencies {
     compile 'org.codehaus.groovy:groovy:2.4.5'
-    compile 'io.bace:bace:1.0-SNAPSHOT'
+    compile 'io.vertace:vertace:1.0.0-SNAPSHOT'
 }
-
-apply from: 'gradle/bace.gradle'
