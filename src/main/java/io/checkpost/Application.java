@@ -1,6 +1,8 @@
 package io.checkpost;
 
 import io.vertace.Vertace;
+import io.vertace.core.LifecycleType;
+import io.vertace.core.Lifecycle;
 import io.vertace.core.VertaceVerticle;
 
 import java.util.Arrays;
@@ -15,11 +17,8 @@ public class Application extends Vertace {
 
     //TODO: also load verticles from appconf
     @Override
-    public List<Class<? extends VertaceVerticle>> verticles() {
-        System.out.println("App");
-        return Arrays.asList(
-                AppHttpServer.class
-        );
+    public void onLoadVerticles(List<Class<? extends VertaceVerticle>> loadedVerticles) {
+        loadedVerticles.add(AppHttpServer.class);
     }
 
 }

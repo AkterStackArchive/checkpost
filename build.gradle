@@ -20,8 +20,10 @@ repositories {
 
 dependencies {
     compile 'org.codehaus.groovy:groovy:2.4.5'
+
+    /* uncomment before :install */
     //compile 'io.vertace:vertace:1.0.0-SNAPSHOT'
-    project.getGradle().properties.startParameter.taskRequests.args.flatten().contains(':install')
+
     /* remove it before release/publish */
     includes.each { module, parent ->
         compile project(":$module")
