@@ -1,6 +1,11 @@
+group 'io.checkpost'
+version '1.0.0-SNAPSHOT'
+
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'idea'
+
+apply from: 'includes.gradle'
 
 compileJava {
     options.fork = true
@@ -15,5 +20,10 @@ repositories {
 
 dependencies {
     compile 'org.codehaus.groovy:groovy:2.4.5'
-    compile 'io.vertace:vertace:1.0.0-SNAPSHOT'
+    //compile 'io.vertace:vertace:1.0.0-SNAPSHOT'
+    project.getGradle().properties.startParameter.taskRequests.args.flatten().contains(':install')
+    /* remove it before release/publish */
+    includes.each { module, parent ->
+        compile project(":$module")
+    }
 }

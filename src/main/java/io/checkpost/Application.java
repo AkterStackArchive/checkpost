@@ -15,7 +15,8 @@ public class Application extends Vertace {
 
     //TODO: also load verticles from appconf
     @Override
-    public List<Class<? extends VertaceVerticle>> registerVerticles() {
+    public List<Class<? extends VertaceVerticle>> verticles() {
+        System.out.println("App");
         return Arrays.asList(
                 AppHttpServer.class
         );
