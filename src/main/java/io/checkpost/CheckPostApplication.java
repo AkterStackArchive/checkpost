@@ -6,10 +6,10 @@ import io.vertace.core.VertaceVerticle;
 import java.util.List;
 
 
-public class Application extends Vertace {
+public class CheckPostApplication extends Vertace {
 
     public static void main(String[] args) {
-        Vertace.run(Application.class, args);
+        Vertace.run(CheckPostApplication.class, args);
     }
 
     @Override
