@@ -1,5 +1,8 @@
 package io.checkpost.http;
 
-public class AuthenticationRouter {
+
+import io.vertace.http.HttpRestRouter;
+
+public class AuthenticationRouter extends HttpRestRouter<AuthenticationRouter> {
 
 }
