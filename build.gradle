@@ -1,11 +1,14 @@
 group 'io.checkpost'
 version '1.0.0-SNAPSHOT'
 
+apply plugin: 'application'
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'idea'
 
 apply from: 'includes.gradle'
+
+mainClassName = 'io.checkpost.Application'
 
 compileJava {
     options.fork = true
