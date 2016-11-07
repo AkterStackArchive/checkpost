@@ -1,7 +1,9 @@
 package io.checkpost;
 
+import io.vertace.PackageScope;
 import io.vertace.http.VertaceHttpServer;
 
+@PackageScope("io.checkpost")
 public class CheckPostHttpServer extends VertaceHttpServer {
 
     @Override
