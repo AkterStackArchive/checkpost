@@ -9,7 +9,10 @@ public class CheckPostApplication extends VertaceWeb {
 
     public static void main(String... args) {
         Vertace.deploy(new CheckPostApplication());
-
     }
 
+    @Override
+    public int port() {
+        return 7007;
+    }
 }
