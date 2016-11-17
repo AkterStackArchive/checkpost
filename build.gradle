@@ -8,7 +8,7 @@ apply plugin: 'idea'
 
 apply from: 'includes.gradle'
 
-mainClassName = 'io.checkpost.Application'
+mainClassName = 'io.checkpost.CheckPostApplication'
 
 compileJava {
     options.fork = true
