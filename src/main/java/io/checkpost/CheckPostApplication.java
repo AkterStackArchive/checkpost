@@ -9,7 +9,7 @@ import io.vertace.core.VertaceException;
 public class CheckPostApplication extends VertaceWeb {
 
     public static void main(String... args) throws VertaceException {
-        Vertace.deploy(new CheckPostApplication());
+        Vertace.deploy(new CheckPostApplication(), args);
     }
 
     @Override
