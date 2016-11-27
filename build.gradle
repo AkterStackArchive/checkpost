@@ -6,8 +6,6 @@ apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'idea'
 
-apply from: 'includes.gradle'
-
 mainClassName = 'io.checkpost.CheckPostApplication'
 
 compileJava {
