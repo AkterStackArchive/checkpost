@@ -1,4 +1,6 @@
+.*
+bin
 build
-bower_components
 node_modules
-includes.gradle
+target
+!.gitignore
