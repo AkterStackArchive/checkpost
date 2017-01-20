@@ -20,6 +20,6 @@ repositories {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy:2.4.5'
+    compile 'org.codehaus.groovy:groovy:2.4.8'
     compile 'io.vertace:vertace:1.0.0-SNAPSHOT'
 }
