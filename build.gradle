@@ -1,10 +1,10 @@
 group 'io.checkpost'
-version '1.0.0-SNAPSHOT'
+version '1.0.0.SNAPSHOT'
 
-apply plugin: 'application'
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'idea'
+apply plugin: 'application'
 
 mainClassName = 'io.checkpost.CheckPostApplication'
 
@@ -20,6 +20,6 @@ repositories {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy:2.4.8'
-    compile 'io.vertace:vertace:1.0.0-SNAPSHOT'
+    compile 'org.codehaus.groovy:groovy:2.4.10'
+    compile 'io.vertace:vertace:2017.SNAPSHOT'
 }
