@@ -1,4 +1,4 @@
-package io.checkpost.conf
+package io.checkpost
 
 import org.neo4j.ogm.session.SessionFactory
 import org.springframework.context.annotation.Bean

@@ -1,4 +1,4 @@
-package io.checkpost.entity
+package io.checkpost.user
 
 import io.checkpost.NodeEntity
 
